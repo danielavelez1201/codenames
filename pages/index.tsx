@@ -1,40 +1,15 @@
 import { useEffect, useState } from "react";
 import { io, Socket } from "Socket.IO-client";
 import GameBoard from "./components/GameBoard";
+import Solution from "./components/Solution";
+import { generateCards } from "./functions/helpers";
 
 let socket: Socket<ServerToClientEvents, ClientToServerEvents>;
 
-const Cards: Array<Card> = [
-  { id: 0, word: "Hello", color: "Blue", visible: false },
-  { id: 1, word: "Hello", color: "Blue", visible: false },
-  { id: 2, word: "Hello", color: "Blue", visible: false },
-  { id: 3, word: "Hello", color: "Blue", visible: false },
-  { id: 4, word: "Hello", color: "Blue", visible: false },
-  { id: 5, word: "Hello", color: "Blue", visible: false },
-  { id: 6, word: "Hello", color: "Neutral", visible: false },
-  { id: 7, word: "Hello", color: "Neutral", visible: false },
-  { id: 8, word: "Hello", color: "Neutral", visible: false },
-  { id: 9, word: "Hello", color: "Neutral", visible: false },
-  { id: 11, word: "Hello", color: "Blue", visible: false },
-  { id: 12, word: "Hello", color: "Blue", visible: false },
-  { id: 13, word: "Hello", color: "Blue", visible: false },
-  { id: 15, word: "Hello", color: "Red", visible: false },
-  { id: 14, word: "Hello", color: "Red", visible: false },
-  { id: 10, word: "Hello", color: "Red", visible: false },
-  { id: 16, word: "Hello", color: "Red", visible: false },
-  { id: 17, word: "Hello", color: "Red", visible: false },
-  { id: 18, word: "Hello", color: "Red", visible: false },
-  { id: 19, word: "Hello", color: "Red", visible: false },
-  { id: 20, word: "Hello", color: "Red", visible: false },
-  { id: 21, word: "Hello", color: "Red", visible: false },
-  { id: 22, word: "Hello", color: "Red", visible: false },
-  { id: 23, word: "Hello", color: "Red", visible: false },
-  { id: 24, word: "Hello", color: "Black", visible: false },
-];
-
 const Home = () => {
   const [input, setInput] = useState("");
-  const [cards, setCards] = useState(Cards);
+  const [cards, setCards] = useState([]);
+  const [showingKey, setShowingKey] = useState(false);
 
   useEffect(() => {
     socketInitializer();
@@ -53,8 +28,9 @@ const Home = () => {
     });
   };
 
-  function clickCard(e, cardId: number) {
+  function clickCard(e: React.ChangeEvent<HTMLInputElement>, cardId: number) {
     console.log("flipping card", cardId);
+    console.log(cards);
     let newCards = cards
       .slice(0, cardId)
       .concat({ ...cards[cardId], visible: true })
@@ -65,7 +41,22 @@ const Home = () => {
   return (
     <div className="m-20">
       <div className="text-xl">Codenames</div>
+      <button
+        className="mt-5 text-lg p-3 border-2 bg-gray-200 rounded-lg hover:bg-gray-100 hover:border-gray-100"
+        onClick={async () => {
+          setCards(await generateCards());
+        }}
+      >
+        Generate Board
+      </button>
       <GameBoard clickCard={clickCard} cards={cards}></GameBoard>
+      <button
+        className="my-5 text-lg p-3 border-2 bg-gray-200 rounded-lg hover:bg-gray-100 hover:border-gray-100"
+        onClick={() => setShowingKey(!showingKey)}
+      >
+        {showingKey ? "Hide Key" : "Show Key"}
+      </button>
+      {showingKey ? <Solution cards={cards}></Solution> : <></>}
     </div>
   );
 };

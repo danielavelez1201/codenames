@@ -8,15 +8,17 @@ const cardStyles = {
   Neutral: "bg-gray-200",
 };
 
-export default function GameBoard(props) {
+export default function GameBoard(props: GameProps) {
   return (
-    <div className="flex flex-row p-10 max-w-lg flex-wrap">
+    <div className="flex flex-row p-10 max-w-7xl flex-wrap">
       {props.cards.map((card: Card) => (
         <button
           key={card.id}
           className={classnames(
-            "p-2 border-2 m-3",
-            card.visible ? cardStyles[card.color] : ""
+            "px-8 py-6 m-3 w-48 rounded-md shadow-md text-center",
+            card.visible
+              ? cardStyles[card.color]
+              : "hover:-translate-y-2 hover:border-yellow-200 hover:border-2 border-2"
           )}
           onClick={(e) => props.clickCard(e, card.id)}
         >
