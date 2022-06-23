@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
 import { io, Socket } from "Socket.IO-client";
-import { Card, ClientToServerEvents, ServerToClientEvents } from "../types";
+import {
+  Card,
+  ClientToServerEvents,
+  ISocket,
+  ServerToClientEvents,
+} from "../types";
 import GameBoard from "./components/GameBoard";
 import Solution from "./components/Solution";
-import { generateCards } from "./functions/helpers";
+import { generateCards } from "../functions/helpers";
 
-let socket: Socket<ServerToClientEvents, ClientToServerEvents>;
+let socket: ISocket;
 
 const Home = () => {
   const [input, setInput] = useState("");

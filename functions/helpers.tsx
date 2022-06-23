@@ -1,4 +1,4 @@
-import { Card } from "../../types";
+import { Card } from "../types";
 
 const randomWords = require("random-spanish-words");
 

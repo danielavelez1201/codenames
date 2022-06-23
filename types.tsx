@@ -1,3 +1,5 @@
+import { Socket } from "Socket.IO-client";
+
 export interface ServerToClientEvents {
   noArg: () => void;
   basicEmit: (a: number, b: string, c: Buffer) => void;
@@ -20,6 +22,11 @@ export interface InterServerEvents {
 export interface SocketData {
   name: string;
   age: number;
+}
+
+export interface ISocket extends Socket {
+  name?: string;
+  cards?: Array<Card>;
 }
 
 export type Card = {
