@@ -1,4 +1,4 @@
-import randomWords from "random-spanish-words";
+const randomWords = require("random-spanish-words");
 
 async function getWordFromAPI() {
   const response = await fetch(

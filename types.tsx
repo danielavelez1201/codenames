@@ -30,6 +30,10 @@ type Card = {
 };
 
 type GameProps = {
-  clickCard?: (a: any, b: number) => void;
+  clickCard: (a: any, b: number) => void;
+  cards: Array<Card>;
+};
+
+type SolutionProps = {
   cards: Array<Card>;
 };

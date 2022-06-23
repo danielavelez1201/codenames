@@ -1,4 +1,4 @@
-export default function Solution(props: GameProps) {
+export default function Solution(props: SolutionProps) {
   return (
     <div className="flex flex-row">
       <div className="p-10 flex flex-col bg-blue-100 rounded-lg">

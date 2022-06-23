@@ -8,7 +8,8 @@ let socket: Socket<ServerToClientEvents, ClientToServerEvents>;
 
 const Home = () => {
   const [input, setInput] = useState("");
-  const [cards, setCards] = useState([]);
+  const emptyArray: Array<Card> = [];
+  const [cards, setCards] = useState(emptyArray);
   const [showingKey, setShowingKey] = useState(false);
 
   useEffect(() => {
@@ -33,7 +34,7 @@ const Home = () => {
     console.log(cards);
     let newCards = cards
       .slice(0, cardId)
-      .concat({ ...cards[cardId], visible: true })
+      .concat([{ ...(cards[cardId] as Card), visible: true }])
       .concat(cards.slice(cardId + 1));
     socket.emit("card-flip", newCards);
   }
