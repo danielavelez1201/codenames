@@ -1,3 +1,5 @@
+import { SolutionProps, Card } from "../../types";
+
 export default function Solution(props: SolutionProps) {
   return (
     <div className="flex flex-row">

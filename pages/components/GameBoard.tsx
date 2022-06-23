@@ -1,5 +1,6 @@
 import classnames from "classnames";
 import { useState } from "react";
+import { GameProps, Card } from "../../types";
 
 const cardStyles = {
   Red: "bg-red-300",

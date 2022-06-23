@@ -1,3 +1,5 @@
+import { Card } from "../../types";
+
 const randomWords = require("random-spanish-words");
 
 async function getWordFromAPI() {

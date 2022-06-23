@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { io, Socket } from "Socket.IO-client";
+import { Card, ClientToServerEvents, ServerToClientEvents } from "../types";
 import GameBoard from "./components/GameBoard";
 import Solution from "./components/Solution";
 import { generateCards } from "./functions/helpers";

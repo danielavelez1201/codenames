@@ -1,39 +1,39 @@
-interface ServerToClientEvents {
+export interface ServerToClientEvents {
   noArg: () => void;
   basicEmit: (a: number, b: string, c: Buffer) => void;
   withAck: (d: string, callback: (e: number) => void) => void;
   "update-card": (msg: Array<Card>) => void;
 }
 
-interface ClientToServerEvents {
+export interface ClientToServerEvents {
   hello: () => void;
   "update-card": () => void;
   "card-flip": () => void;
 }
 
-interface InterServerEvents {
+export interface InterServerEvents {
   ping: () => void;
   "update-card": () => void;
   "card-flip": () => void;
 }
 
-interface SocketData {
+export interface SocketData {
   name: string;
   age: number;
 }
 
-type Card = {
+export type Card = {
   id: number;
   word: string;
   color: "Blue" | "Red" | "Neutral" | "Black";
   visible: boolean;
 };
 
-type GameProps = {
+export type GameProps = {
   clickCard: (a: any, b: number) => void;
   cards: Array<Card>;
 };
 
-type SolutionProps = {
+export type SolutionProps = {
   cards: Array<Card>;
 };
