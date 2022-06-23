@@ -1,4 +1,4 @@
-import { Socket } from "Socket.IO-client";
+import { Socket } from "socket.io-client";
 
 export interface ServerToClientEvents {
   noArg: () => void;

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { io, Socket } from "Socket.IO-client";
+import { io } from "socket.io-client";
 import {
   Card,
   ClientToServerEvents,
