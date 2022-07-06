@@ -44,6 +44,7 @@ const Home = () => {
       .concat([{ ...(cards[cardId] as Card), visible: true }])
       .concat(cards.slice(cardId + 1));
     socket.emit("card-flip", newCards);
+    setCards(newCards);
   }
 
   return (
