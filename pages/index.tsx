@@ -31,6 +31,7 @@ const Home = () => {
     });
 
     socket.on("update-card", (msg) => {
+      console.log("update card");
       setCards(msg);
     });
   };
@@ -51,7 +52,9 @@ const Home = () => {
       <button
         className="mt-5 text-lg p-3 border-2 bg-gray-200 rounded-lg hover:bg-gray-100 hover:border-gray-100"
         onClick={async () => {
-          setCards(await generateCards());
+          const newCards = await generateCards();
+          setCards(newCards);
+          socket.emit("card-flip", newCards);
         }}
       >
         Generate Board
