@@ -11,7 +11,7 @@ const cardStyles = {
 
 export default function GameBoard(props: GameProps) {
   return (
-    <div className="flex flex-row p-10 max-w-7xl flex-wrap">
+    <div className="flex flex-row lg:p-10 sm:p-2 max-w-7xl flex-wrap">
       {props.cards &&
         props.cards.map((card: Card) => (
           <button
